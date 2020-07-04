@@ -1,0 +1,256 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{mathpazo}
+\usepackage{systeme}
+\usepackage{multirow,array}
+\usepackage{xcolor}
+\usepackage{tikz-qtree}
+\usepackage[long]{optidef}
+\usepackage{apacite}
+\usepackage{mathtools}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amssymb}
+\usepackage{csquotes}
+\usepackage{subcaption}
+
+
+
+\newcommand{\R}{\mathbf{R}}  
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand*{\QEDA}{\hfill\ensuremath{\blacksquare}}%
+
+\tikzset{main node/.style={circle,draw,minimum size=1.5cm,inner sep=0pt},
+            }
+
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settingshttps://www.overleaf.com/6212182343ggsvjzswgdnx
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+\setlength{\parskip}{1em}
+
+
+%
+% Create Problem Sections
+%
+
+
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{claim}[2][Claim]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+
+
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+}{
+}
+
+\newcommand{\hmwkTitle}{A collection of integrals}
+\newcommand{\hmwkAuthorName}{\textbf{NoFishLikeIan}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\hmwkTitle}\\
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+%\newcommand{\norm}[1]{\lVert#1\rVert_2}
+
+% Alias for the Solution section header
+%\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+\usepackage{accents}
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+
+\newcommand{\citeout}[1]{\citeauthor{#1} \citeyear{#1}}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\setcounter{page}{1}
+
+\section{Rabee's formula}
+
+\begin{equation} \label{It}
+    I(t) \coloneqq \int^{t+1}_{t} \ln\left(\Gamma(z)\right) \diff z
+\end{equation}
+
+Let $x = z- t \implies \diff z = \diff x$, then
+
+\begin{equation}
+    \begin{split}
+        I(t) &= \int^1_0 \ln\left(\Gamma(x + t)\right) \diff x \\
+        \text{By Leibniz rule}\\
+        I'(t) &= \int^1_0 \partial_t\left[\ln\left(\Gamma(x + t)\right)\right] \diff x \\
+        &= \int^1_0 \frac{1}{\Gamma(x + t)} \Gamma'(x + t) \diff x 
+    \end{split}
+\end{equation}
+
+Note that the partial derivative with respect to $t$ is equivalent to that with respect to $x$,
+
+\begin{equation}
+    \begin{split}
+        I'(t) &\equiv \frac{\partial I(t)}{\partial x} \\
+        &= \ln(\Gamma(x + t)) \vert^{x=1}_{x=0} \\
+        &= \ln(\Gamma(1 + t)) - \ln(\Gamma(t))\\
+        &= \ln\left(\frac{\Gamma(t+1)}{\Gamma(t)}\right) \\
+        &= \ln\left(\frac{\Gamma(t) \cdot t}{\Gamma(t)}\right) = \ln(t)
+    \end{split}
+\end{equation}
+
+By integrating with respect to $t$
+
+\begin{equation} \label{tau_int}
+\begin{split}
+   \int^{\tau}_{0} I'(t) \diff t &= I(\tau) -  I(0) \\
+    &= \int^{\tau}_{0} \ln(t) \diff t \\
+    &= \ln(t) \cdot t - t \vert^{\tau}_{0} \\
+    &= \ln(\tau) \cdot \tau - \tau - \lim_{t \xrightarrow{} 0} \ln(t) \cdot t \\
+    &= \ln(\tau) \cdot \tau - \tau
+\end{split}
+\end{equation}
+
+Hence we can rewrite (\ref{tau_int})
+
+\begin{equation}
+    I(\tau) = I(0) + \ln(\tau) \cdot \tau - \tau
+\end{equation}
+
+But we need to find $I(0)$. We can evaluate (\ref{It}) at 0, then
+
+\begin{equation}
+    J \coloneqq I(0) = \int^1_0 \ln(\Gamma(x)) \diff x \\
+\end{equation}
+
+Let now $x= 1-y \implies \diff x = -\diff y$ in order to preserve the bounds, then
+
+\begin{equation}
+    \begin{split}
+        J &= \int^0_1 \ln(\Gamma(1 - y)) (-\diff y) \\
+        &=\int^1_0\ln(\Gamma(1 - y)) \diff y
+    \end{split}
+\end{equation}
+
+Note that this implies that
+
+\begin{equation}
+    \begin{split}
+        J &= \frac{1}{2} \cdot \int^1_0 \ln(\Gamma(x)) \ln(\Gamma(1 - X)) \diff x \\
+        &= \frac{1}{2} \cdot \int^1_0 \ln(\Gamma(x) \cdot \Gamma(1 - X)) \diff x\\
+        &\text{by Euler's reflection formula}\\
+        &= \frac{1}{2} \cdot \int^1_0 \ln\left( \frac{\pi}{\sin{(\pi \cdot x)}} \right) \diff x \\
+        &= \frac{1}{2} \cdot \int^1_0 \ln(\pi) \diff x - \frac{1}{2} \cdot \int^1_0 \ln(\sin{(\pi \cdot x)}) \diff x 
+    \end{split}
+\end{equation}
+
+Let $z = \pi \cdot x \implies \diff x = \frac{\diff z}{\pi}$,
+
+\begin{equation}
+    \begin{split}
+        J &= \frac{1}{2} \cdot \int^1_0 \ln(\pi) \diff x - \frac{1}{2 \pi} \cdot \int^\pi_0 \ln(\sin{(z)}) \diff z \\
+        &= \frac{1}{2} \cdot \int^1_0 \ln(\pi) \diff x + \frac{1}{2} \cdot \ln(2) = \frac{1}{2} \ln(2 \cdot \pi)
+    \end{split}
+\end{equation}
+
+Then plugging back in
+
+\begin{equation}
+    \int^1_0 \ln\left(\Gamma(x + t)\right) \diff x = \frac{\ln(2\pi)}{2} + \ln(t) \cdot t -t 
+\end{equation}
+
+\end{document}
