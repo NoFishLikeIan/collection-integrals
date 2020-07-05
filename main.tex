@@ -253,4 +253,23 @@ Then plugging back in
     \int^1_0 \ln\left(\Gamma(x + t)\right) \diff x = \frac{\ln(2\pi)}{2} + \ln(t) \cdot t -t 
 \end{equation}
 
+\section{Wallis product}
+
+By using Euler product form of $sin(x)$ we can write
+
+\begin{equation}
+    sin(x) = x\cdot \prod^{\infty}_{n=1} \left( 1 - \frac{x^2}{n^2 \pi^2} \right) 
+\end{equation}
+
+Then evaluate 
+
+\begin{equation}
+\begin{split}
+    sin(\pi / 2) &= \frac{\pi}{2} \cdot \prod^{\infty}_{n=1}\left( 1 - \frac{1}{(2n)^2} \right) \\
+    \frac{2}{\pi} &= \prod^{\infty}_{n=1}\left( \frac{(2n)^2 - 1}{(2n)^2}  \right) \\
+    \frac{\pi}{2} &= \prod^{\infty}_{n=1} \left( \frac{(2n)^2}{(2n)^2 - 1} \right) \\
+    \frac{\pi}{2} &= \prod^{\infty}_{n=1} \left( \frac{2n}{2n - 1} \cdot \frac{2n}{2n + 1} \right) = \frac{2}{1} \cdot \frac{2}{3} \cdot \frac{4}{3} \cdot \frac{4}{5} \dots
+\end{split}
+\end{equation}
+
 \end{document}
